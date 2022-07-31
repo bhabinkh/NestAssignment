@@ -13,8 +13,18 @@ type AuthType {
   token: String!
 }
 
+type Comment {
+  postId: String!
+  comments: String!
+  authorId: String!
+  commentDate: String!
+}
+
 type Post {
   id: ID!
+  userId: String!
+  totalComments: Int
+  comment: [Comment!]
   postTitle: String!
   postDescription: String!
   type: String!
@@ -25,6 +35,8 @@ type Query {
   user(id: String!): User!
   users: [User!]!
   post(id: String!): Post!
+  PrivatePosts(id: String!): [Post!]!
+  PostWithMaxComment: [Post!]!
   posts: [Post!]!
 }
 
@@ -33,6 +45,7 @@ type Mutation {
   UpdateUser(data: UpdateUserInput!): User!
   login(data: AuthInput!): AuthType!
   createPost(data: CreatePostInput!): Post!
+  createComment(data: CreateCommentInput!): Post!
   UpdatePost(data: UpdatePostInput!): Post!
 }
 
@@ -58,6 +71,14 @@ input CreatePostInput {
   postTitle: String!
   postDescription: String!
   type: String!
+  userId: String!
+}
+
+input CreateCommentInput {
+  comments: String!
+  postId: String!
+  authorId: String!
+  commentDate: String!
 }
 
 input UpdatePostInput {

@@ -16,8 +16,7 @@ import { PostModule } from './post/post.module';
     }),
     UserModule,
     AuthModule,
-    PostModule,
-    
+    PostModule
   ],
 
   providers: [AppService],

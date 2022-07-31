@@ -1,6 +1,5 @@
 import { InputType } from '@nestjs/graphql';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { ObjectID } from 'typeorm';
+import { IsArray, IsEmail, IsEmpty, IsNotEmpty, IsString } from 'class-validator';
 
 @InputType()
 export class CreatePostInput {
@@ -15,6 +14,9 @@ export class CreatePostInput {
   @IsString()
   @IsNotEmpty({ message: 'Type is required' })
   type: string;
-
+  
+  @IsString()
+  @IsNotEmpty({message:'userId is required'})
+  userId:string;
   
 }
